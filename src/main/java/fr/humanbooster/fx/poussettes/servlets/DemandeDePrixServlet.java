@@ -78,13 +78,9 @@ public class DemandeDePrixServlet extends HttpServlet {
 				datedebut,
 				dateDeFin,
 				request.getParameter("infoComplementaire"));
-            
-            //List<Option> options = optionService.recupererOptions();
-            System.out.println(demandeDePrix);
-            
-            
-		//System.out.println("demande final"+demandeDePrix);
-		//response.sendRedirect("tableauDeBord");
+            if (request.getParameter("option") != null) {
+				demandeDePrixService.ajouterOption(demandeDePrix.getId(), 1L);
+			}
 		
 		response.sendRedirect("resum");
 	}

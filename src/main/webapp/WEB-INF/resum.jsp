@@ -10,8 +10,12 @@
 <title>resum</title>
 </head>
 <body>
-
-	<h1>${demande}</h1>
+	<div class="d-flex justify-content-center">
+		<div class="card col-6">
+		<h1>Resumer demande</h1>
+			<p>${demande}</p>
+		</div>
+	</div>
 
 </body>
 </html>

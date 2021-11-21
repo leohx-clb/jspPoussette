@@ -1,5 +1,6 @@
 package fr.humanbooster.fx.poussettes.business;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class DemandeDePrix {
 			String informationComplementaire) {
 		id = ++compteurId;
 		dateDemande = new Date();
+		options = new ArrayList<>();
 		this.email = email;
 		this.poussetteSelectionnee = poussetteSelectionnee;
 		this.dateDebut = dateDebut;

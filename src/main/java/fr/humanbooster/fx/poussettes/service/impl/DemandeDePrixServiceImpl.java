@@ -44,6 +44,7 @@ public class DemandeDePrixServiceImpl implements DemandeDePrixService {
 		if (demandeDePrix != null) {
 			demandeDePrix.getOptions().add(os.recupererOption(idOption));
 		}
+		System.out.println("options **"+demandeDePrix.getOptions());
 		return demandeDePrix;
 	}
 	
