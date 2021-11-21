@@ -25,24 +25,27 @@
 			  
 			  <label class="input-group-text">Poussette</label>
 				  <select class="form-select" name="couleur">
-						<option selected value="${poussetteSelected.nom}">${poussetteSelected.nom}</option>
-						<c:forEach items="${poussettes}" var="pousette">
+				  		<c:if test="${poussetteSelected}">
+							<option selected value="${poussetteSelected.nom}">${poussetteSelected.nom}</option>
+						</c:if>
+						<c:forEach items="${poussettes}" var="poussette">
 				    		<option value="${poussette.nom}">${poussette.nom}</option>
 				    	</c:forEach>
 				  </select>
 			  </div>
 			  
 			  
-			  <div class="form-check mb-3">
 			  			  	
-			  	<c:forEach items="options" var="option">
-			  		  <input class="form-check-input" type="checkbox" value="${option.nom}]}">
-					  <label class="form-check-label">
-					    ${option.nom}
-					  </label>
+			  	<c:forEach items="${options}" var="option">
+			  	
+			  			<div class="form-check mb-3">
+				  		  <input class="form-check-input" type="checkbox" value="${option.nom}">
+						  <label class="form-check-label">${option.nom}</label>
+					  </div>
+					  
 			  	</c:forEach>
 
-			 </div>
+			 
 			  
 			  
 			  

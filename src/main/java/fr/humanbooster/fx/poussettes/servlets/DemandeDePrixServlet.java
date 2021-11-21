@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.humanbooster.fx.poussettes.business.Poussette;
+import fr.humanbooster.fx.poussettes.service.DemandeDePrixService;
 import fr.humanbooster.fx.poussettes.service.OptionService;
 import fr.humanbooster.fx.poussettes.service.PoussetteService;
 import fr.humanbooster.fx.poussettes.service.impl.CouleurServiceImpl;
+import fr.humanbooster.fx.poussettes.service.impl.DemandeDePrixServiceImpl;
 import fr.humanbooster.fx.poussettes.service.impl.OptionServiceImpl;
 import fr.humanbooster.fx.poussettes.service.impl.PoussetteServiceImpl;
 
@@ -21,6 +23,7 @@ import fr.humanbooster.fx.poussettes.service.impl.PoussetteServiceImpl;
 public class DemandeDePrixServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private DemandeDePrixService demandeDePrixService = new DemandeDePrixServiceImpl();
 	private OptionService optionService = new OptionServiceImpl();
 	private PoussetteService poussetteService = new PoussetteServiceImpl();
        
@@ -28,6 +31,7 @@ public class DemandeDePrixServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public DemandeDePrixServlet() {
+    	new DemandeDePrixServiceImpl();
     	new CouleurServiceImpl();
     	new OptionServiceImpl();
         new PoussetteServiceImpl();
@@ -37,12 +41,13 @@ public class DemandeDePrixServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long idLong = Long.parseLong(request.getParameter("ID"));
-		Poussette poussette = poussetteService.recupererPoussette(idLong);
 		if (request.getParameter("ID") != null) {
+			
+			Poussette poussette = poussetteService.recupererPoussette(Long.parseLong(request.getParameter("ID")));
 			request.setAttribute("pousetteSelected", poussette);
+			System.out.println(poussette);
 		}
-		request.setAttribute("pousettes", poussetteService.recupererPoussettes());
+		request.setAttribute("poussettes", poussetteService.recupererPoussettes());
 		request.setAttribute("options", optionService.recupererOptions());
 		request.getRequestDispatcher("WEB-INF/demandeDePrix.jsp").forward(request, response);
 	}
