@@ -24,7 +24,7 @@
 			  <div class="inpute-group mb-3">
 			  
 			  <label class="input-group-text">Poussette</label>
-				  <select class="form-select" name="couleur">
+				  <select class="form-select" name="nomPoussette" required>
 				  		<c:if test="${poussetteSelected}">
 							<option selected value="${poussetteSelected.nom}">${poussetteSelected.nom}</option>
 						</c:if>
@@ -33,13 +33,22 @@
 				    	</c:forEach>
 				  </select>
 			  </div>
+
+			  <div class="inpute-group mb-3">
+			    <label for="dateDebut" class="form-label" >Date De Debut</label>
+			    <input type="date" name="dateDebut" class="form-control" required>
+			  </div>
 			  
+			  <div class="inpute-group mb-3">
+			    <label for="dateDeFin" class="form-label">Date De Fin</label>
+			    <input type="date" name="dateDeFin" class="form-control" required>
+			  </div>
 			  
 			  			  	
 			  	<c:forEach items="${options}" var="option">
 			  	
-			  			<div class="form-check mb-3">
-				  		  <input class="form-check-input" type="checkbox" value="${option.nom}">
+			  		  <div class="form-check mb-3">
+				  		  <input class="form-check-input" type="checkbox" name="option${option.id}" value="${option.id}">
 						  <label class="form-check-label">${option.nom}</label>
 					  </div>
 					  
@@ -51,7 +60,7 @@
 			  
 			  <div class="input-group">
 				  <span class="input-group-text">info complémentaire</span>
-				  <textarea class="form-control" aria-label="With textarea"></textarea>
+				  <textarea class="form-control" aria-label="With textarea" name="infoComplementaire"></textarea>
 			  </div>
 
 			  <button type="submit" class="btn btn-success">Envoyer</button>
@@ -59,6 +68,7 @@
 		
 		</div>
 	</div>
-
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

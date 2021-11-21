@@ -34,6 +34,7 @@ public class DemandeDePrixServiceImpl implements DemandeDePrixService {
 	public DemandeDePrix ajouterDemandeDePrix(String email, String nomPoussetteSelectionnee, Date dateDebut,
 			Date dateFin, String informationComplementaire) {
 		DemandeDePrix demandeDePrix = new DemandeDePrix(email, ps.recupererPoussette(nomPoussetteSelectionnee), dateDebut, dateFin, informationComplementaire);
+		demandesDePrix.add(demandeDePrix);
 		return demandeDePrix;
 	}
 
@@ -45,5 +46,13 @@ public class DemandeDePrixServiceImpl implements DemandeDePrixService {
 		}
 		return demandeDePrix;
 	}
+	
+	@Override
+	public DemandeDePrix getlast() {
+		DemandeDePrix demandeDePrix2 = demandesDePrix.get(demandesDePrix.size() - 1);
+		return demandeDePrix2;
+		
+	}
+	
 
 }

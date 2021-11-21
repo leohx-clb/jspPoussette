@@ -1,12 +1,17 @@
 package fr.humanbooster.fx.poussettes.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.humanbooster.fx.poussettes.business.DemandeDePrix;
 import fr.humanbooster.fx.poussettes.business.Poussette;
 import fr.humanbooster.fx.poussettes.service.DemandeDePrixService;
 import fr.humanbooster.fx.poussettes.service.OptionService;
@@ -40,7 +45,7 @@ public class DemandeDePrixServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		if (request.getParameter("ID") != null) {
 			
 			Poussette poussette = poussetteService.recupererPoussette(Long.parseLong(request.getParameter("ID")));
@@ -56,8 +61,32 @@ public class DemandeDePrixServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date datedebut = null;
+        Date dateDeFin = null;
+		
+            try {
+				datedebut = simpleDateFormat.parse(request.getParameter("dateDebut"));
+				dateDeFin = simpleDateFormat.parse(request.getParameter("dateDeFin"));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            DemandeDePrix demandeDePrix = demandeDePrixService.ajouterDemandeDePrix(
+				request.getParameter("email"),
+				request.getParameter("nomPoussette"),
+				datedebut,
+				dateDeFin,
+				request.getParameter("infoComplementaire"));
+            
+            //List<Option> options = optionService.recupererOptions();
+            System.out.println(demandeDePrix);
+            
+            
+		//System.out.println("demande final"+demandeDePrix);
+		//response.sendRedirect("tableauDeBord");
+		
+		response.sendRedirect("resum");
 	}
 
 }

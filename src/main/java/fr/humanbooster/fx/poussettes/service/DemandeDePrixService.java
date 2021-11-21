@@ -15,4 +15,6 @@ public interface DemandeDePrixService {
 	
 	public DemandeDePrix ajouterOption(Long idDemandeDePrix, Long idOption);
 
+	DemandeDePrix getlast();
+
 }
