@@ -48,7 +48,7 @@
 			  	<c:forEach items="${options}" var="option">
 			  	
 			  		  <div class="form-check mb-3">
-				  		  <input class="form-check-input" type="checkbox" value="${option.nom}">
+				  		  <input class="form-check-input" type="checkbox" id="option" name="option" value="${option.id}">
 						  <label class="form-check-label">${option.nom}</label>
 					  </div>
 					  

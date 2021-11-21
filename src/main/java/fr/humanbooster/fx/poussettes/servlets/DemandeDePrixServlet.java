@@ -50,7 +50,7 @@ public class DemandeDePrixServlet extends HttpServlet {
 			
 			Poussette poussette = poussetteService.recupererPoussette(Long.parseLong(request.getParameter("ID")));
 			request.setAttribute("pousetteSelected", poussette);
-			System.out.println(poussette);
+			//System.out.println(poussette);
 		}
 		request.setAttribute("poussettes", poussetteService.recupererPoussettes());
 		request.setAttribute("options", optionService.recupererOptions());
@@ -62,8 +62,12 @@ public class DemandeDePrixServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
         Date datedebut = null;
         Date dateDeFin = null;
+        
+        String[] optionName = request.getParameterValues("option");
+
 		
             try {
 				datedebut = simpleDateFormat.parse(request.getParameter("dateDebut"));
@@ -78,11 +82,16 @@ public class DemandeDePrixServlet extends HttpServlet {
 				datedebut,
 				dateDeFin,
 				request.getParameter("infoComplementaire"));
-            if (request.getParameter("option") != null) {
-				demandeDePrixService.ajouterOption(demandeDePrix.getId(), 1L);
+            if (request.getParameterValues("option") != null) {
+                for (String string : optionName) {
+        			//System.out.println(string);
+        			demandeDePrixService.ajouterOption(demandeDePrix.getId(), Long.parseLong(string));
+        		}
 			}
 		
 		response.sendRedirect("resum");
 	}
+	
+
 
 }

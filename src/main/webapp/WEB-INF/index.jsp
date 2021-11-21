@@ -65,6 +65,7 @@
     </c:forEach>
   </tbody>
 </table>
+<a href="demandeDePrix">Cree une demande</a>
 
 
 </body>
