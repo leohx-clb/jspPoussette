@@ -15,11 +15,11 @@
 
 
 	
-	<form action="filter" method="post" class="d-flex">
+	<form action="index" method="post" class="d-flex">
 	<!-- Partie filtre -->
 		<div class="input-group">
 		  <span class="input-group-text">Nom</span>
-		  <input type="text" class="form-control" placeholder="Nom">		  
+		  <input type="text" name="nom" class="form-control" placeholder="Nom">		  
 
 		  <label class="input-group-text">Couleur</label>
 		  <select class="form-select" name="couleur">
@@ -38,7 +38,7 @@
 
 		  <label class="input-group-text">Filtre</label>
 		  <button class="btn btn-success" type="submit">Ajouter</button>
-		  <button class="btn btn-danger" type="button">Retirer</button>
+		  <a href="index" class="btn btn-danger" type="button">Retirer</a>
 		</div>
 
 		

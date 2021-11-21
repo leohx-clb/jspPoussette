@@ -1,7 +1,6 @@
 package fr.humanbooster.fx.poussettes.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.humanbooster.fx.poussettes.business.Poussette;
 import fr.humanbooster.fx.poussettes.service.CouleurService;
 import fr.humanbooster.fx.poussettes.service.PoussetteService;
 import fr.humanbooster.fx.poussettes.service.impl.CouleurServiceImpl;
@@ -48,8 +46,36 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		/*       test filtre       */
+		/*
+		String filterNom = request.getParameter("nom");
+		String filterCouleur = request.getParameter("couleur");
+		String filterroues= request.getParameter("nbRoues");
+		
+		String param ="";
+		int count = 0;
+		
+		if (filterNom != null && filterNom != "") {
+			param += "NOM?="+filterNom;
+			count++;
+		}
+		if (filterCouleur != null && filterCouleur != "COULEUR") {
+			if (count>0) {
+				param += "&";
+			}
+			param += "COULEUR?="+filterCouleur;
+			count++;
+		}
+		if (filterroues != null && filterroues != "") {
+			if (count>0) {
+				param += "&";
+			}
+			param += "NBROUES?="+filterroues;
+			count++;
+		}
+		
+		response.sendRedirect("index"+param);
+		*/
 	}
 
 }
